@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/allerta_stencil</item>
+        <item>@font/dotgothic16</item>
+        <item>@font/news_cycle</item>
+        <item>@font/notable</item>
+        <item>@font/pirata_one</item>
+    </array>
+</resources>
