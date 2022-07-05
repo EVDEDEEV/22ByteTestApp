@@ -14,8 +14,6 @@ interface NewsRepository {
     suspend fun getNewsList(): Flow<PagingData<News>>
 }
 
-
-
 class NewsRepositoryImpl @Inject constructor(
     private val api: NewsApi,
 ) : NewsRepository {

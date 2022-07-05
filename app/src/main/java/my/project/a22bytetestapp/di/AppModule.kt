@@ -14,7 +14,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class AppModule {
 
-
     companion object {
         private const val BASE_URL = "https://newsapi.org/v2/"
     }
@@ -32,8 +31,4 @@ class AppModule {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
-    @Provides
-    @Singleton
-    fun provideAdapter(): NewsAdapter = NewsAdapter()
 }

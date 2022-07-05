@@ -58,5 +58,4 @@ class NewsPagingSource @Inject constructor(
             LoadResult.Error(e)
         }
     }
-
 }

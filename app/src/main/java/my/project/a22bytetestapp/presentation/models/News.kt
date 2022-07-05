@@ -5,5 +5,4 @@ data class News(
     val image: String,
     val source: String,
     val url: String,
-
-    )
+)

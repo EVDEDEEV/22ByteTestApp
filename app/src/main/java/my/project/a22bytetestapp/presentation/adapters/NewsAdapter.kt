@@ -38,7 +38,6 @@ class NewsAdapter : PagingDataAdapter<News, NewsAdapter.MyViewHolder>(DiffUtilCa
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
         getItem(position)?.let {
             holder.bind(it)
         }
@@ -60,31 +59,19 @@ class NewsAdapter : PagingDataAdapter<News, NewsAdapter.MyViewHolder>(DiffUtilCa
                 val position = absoluteAdapterPosition
                 val newsItem = getItem(position)
                 if (newsItem != null) {
-                    openNewsArticleInChrome(newsItem.url, itemView.context)
+                    openNewsItemInChrome(newsItem.url, itemView.context)
                 }
             }
         }
+    }
 
-//        init {
-//            binding.apply {
-//                root.setOnClickListener {
-//                    val position = absoluteAdapterPosition
-//                    val newsItem = getItem(position)
-//                    if (newsItem != null) {
-//                        openNewsArticleInChrome(newsItem.url, itemView.context)
-//                    }
-//                }
-//            }
-//        }
+    private fun openNewsItemInChrome(url: String, context: Context) {
+        val builder: CustomTabsIntent.Builder = CustomTabsIntent.Builder()
+        val customTabsIntent = builder.build()
+        customTabsIntent.launchUrl(context, Uri.parse(url))
+    }
+}
 
-
-                private fun openNewsArticleInChrome(url: String, context: Context) {
-                    val builder: CustomTabsIntent.Builder = CustomTabsIntent.Builder()
-                    val customTabsIntent = builder.build()
-                    customTabsIntent.launchUrl(context, Uri.parse(url))
-                }
-            }
-        }
 
 
 
