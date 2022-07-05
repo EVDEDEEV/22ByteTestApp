@@ -9,6 +9,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import my.project.a22bytetestapp.R
 import my.project.a22bytetestapp.databinding.NewsItemBinding
 import my.project.a22bytetestapp.presentation.models.News
 
@@ -48,22 +49,33 @@ class NewsAdapter : PagingDataAdapter<News, NewsAdapter.MyViewHolder>(DiffUtilCa
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(news: News) {
-            Picasso.get().load(news.image).into(binding.imageView)
+            if (news.image.isEmpty()) {
+                binding.imageView.setImageResource(R.drawable.local_news)
+            } else {
+                Picasso.get().load(news.image).fit().centerCrop().into(binding.imageView)
+            }
             binding.source.text = news.source
             binding.news.text = news.title
-        }
-
-        init {
-            binding.apply {
-                root.setOnClickListener {
-                    val position = absoluteAdapterPosition
-                    val newsItem = getItem(position)
-                    if (newsItem != null) {
-                        openNewsArticleInChrome(newsItem.url, itemView.context)
-                    }
+            binding.root.setOnClickListener {
+                val position = absoluteAdapterPosition
+                val newsItem = getItem(position)
+                if (newsItem != null) {
+                    openNewsArticleInChrome(newsItem.url, itemView.context)
                 }
             }
         }
+
+//        init {
+//            binding.apply {
+//                root.setOnClickListener {
+//                    val position = absoluteAdapterPosition
+//                    val newsItem = getItem(position)
+//                    if (newsItem != null) {
+//                        openNewsArticleInChrome(newsItem.url, itemView.context)
+//                    }
+//                }
+//            }
+//        }
 
 
                 private fun openNewsArticleInChrome(url: String, context: Context) {

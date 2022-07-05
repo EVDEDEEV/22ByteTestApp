@@ -20,16 +20,11 @@ class NewsRepositoryImpl @Inject constructor(
     private val api: NewsApi,
 ) : NewsRepository {
 
-    companion object {
-        const val MAX_PAGE_SIZE = 40
-    }
-
     override suspend fun getNewsList(): Flow<PagingData<News>> {
         return Pager(
             config = PagingConfig(
+                enablePlaceholders = false,
                 pageSize = NETWORK_PAGE_SIZE,
-//                maxSize = MAX_PAGE_SIZE,
-                enablePlaceholders = false
             ),
             pagingSourceFactory = {
                 NewsPagingSource(api)
